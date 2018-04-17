@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour {
     
-    private Vector3 paddlePosition;
+	private Vector3 paddlePosition;
 
 	// Use this for initialization
 	void Start () {
-        Vector3 paddlePosition = new Vector3(this.transform.position.x, this.transform.position.y, 0.0f);
+	paddlePosition = new Vector3( 0.5f, this.transform.position.y, 0f);        
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-        paddlePosition.x = (Input.mousePosition.x / Screen.width) * 16;
-
-        this.transform.position = paddlePosition;
+	float mousePositionInWorldUnits = (Input.mousePosition.x / Screen.width) * 16;
+	paddlePosition.x = Mathf.Clamp(mousePositionInWorldUnits, 0.5f, 15.5f );
+	this.transform.position = paddlePosition;
 
 	}
 }
