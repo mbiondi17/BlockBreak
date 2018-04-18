@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class HitBottomScript : MonoBehaviour {
 
-    public LevelManager lm;
+    private LevelManager lm;
 
 	// Use this for initialization
 	void Start () {
-		
+		if(lm == null) {
+			lm = GameObject.FindObjectOfType<LevelManager>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -17,7 +19,6 @@ public class HitBottomScript : MonoBehaviour {
 	}
 
     void OnTriggerEnter2D(Collider2D collider) {
-        print("Trigger!");
         lm.loadScene("Lose");
     }
 }

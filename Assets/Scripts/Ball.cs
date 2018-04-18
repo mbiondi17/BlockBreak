@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
 
-	[SerializeField]private Paddle paddle;
+	private Paddle paddle;
 	private bool gameStarted = false;
-
 	private Vector3 distanceToPaddle;
 
 	// Use this for initialization
 	void Start () {
+		paddle = GameObject.FindObjectOfType<Paddle>();
 		distanceToPaddle = this.transform.position - paddle.transform.position;
 	}
 	
