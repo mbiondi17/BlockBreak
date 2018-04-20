@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System;
 
 public class LevelManager : MonoBehaviour {
 
-    public List<string> levelNames;
     private string currentLevel = "Start";
     private static LevelManager instance;
 
@@ -24,12 +24,19 @@ public class LevelManager : MonoBehaviour {
 
     public void loadScene(string sceneName)
     {
-        if (levelNames.Contains(sceneName)) {
+        try{
             currentLevel = sceneName;
             SceneManager.LoadScene(sceneName);
         }
-        else Debug.Log("Requested a scene that does not exist or has not been added to the list of Level Names!");
+        catch(Exception ex) {
+             Debug.Log(ex.InnerException);
+             Debug.Log("You probably tried to load some level that doesn't exist!");
+        }
         
+    }
+
+    public void loadNextLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void quitGame() 
