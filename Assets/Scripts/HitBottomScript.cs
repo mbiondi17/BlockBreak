@@ -19,6 +19,6 @@ public class HitBottomScript : MonoBehaviour {
 	}
 
     void OnTriggerEnter2D(Collider2D collider) {
-        lm.loadScene("Lose");
+        lm.LoadScene("Lose");
     }
 }
